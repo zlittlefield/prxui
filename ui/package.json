@@ -1,0 +1,41 @@
+{
+  "name": "prx_ui",
+  "version": "1.0.0",
+  "description": "Web-based visualization of the pracsys library",
+  "main": "index.js",
+  "author": "Zak Littlefield",
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail \"webpack-dev-server --mode development --open\" \"nodemon server.js\""
+  },
+  "dependencies": {
+    "@loaders.gl/images": "^2.1.2",
+    "bson": "^4.0.4",
+    "bufferutil": "^4.0.1",
+    "concurrently": "^5.1.0",
+    "google-protobuf": "^3.11.4",
+    "grommet": "^2.11.3",
+    "grommet-icons": "^4.4.0",
+    "http": "^0.0.1-security",
+    "loaders.gl": "^0.3.5",
+    "nodemon": "^2.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-fps-stats": "^0.1.2",
+    "react-three-fiber": "^4.0.28",
+    "react-use-websocket": "^1.7.2",
+    "react-vis": "^1.11.7",
+    "react-websocket": "^2.1.0",
+    "styled-components": "^5.0.1",
+    "three": "^0.115.0",
+    "websocket": "^1.0.31",
+    "ws": "^7.2.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "8.0.0-beta.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
