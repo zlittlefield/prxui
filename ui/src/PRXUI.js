@@ -5,13 +5,10 @@ import React,
 }
 from 'react'
 
-import
-{
-    Grid,
-    Box,
-    Grommet,
-}
-from 'grommet';
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import
 {
@@ -26,24 +23,6 @@ import FPSStats from "react-fps-stats";
 import RootGraphics from './RootGraphics.js'
 import PlayPause from './PlayPause.js'
 import RecordControl from './RecordControl.js'
-
-const theme = {
-    global:
-    {
-        edgeSize:
-        {
-            small: '2px',
-        },
-    },
-    button:
-    {
-        padding:
-        {
-            horizontal: '2px'
-        }
-    }
-
-};
 
 export default function PRXUI()
 {
@@ -124,26 +103,19 @@ export default function PRXUI()
         }
     }, [ lastMessage ] );
 
-    return ( <Grommet theme={theme}>
-      <Grid
-          border={{size: 'xsmall' }}
-          pad="none" 
-          rows={['99vh']}
-          columns={['10vw', 'auto']}
-          gap="xxsmall"
-          areas={[
-            { name: 'sidebar', start: [0, 0], end: [0, 0] },
-            { name: 'graphics', start: [1, 0], end: [1, 0] },
-          ]}
-        >
-          <Box pad="none" border={{ color: 'border', size: 'xsmall' }} gridArea="sidebar" background="light-5" >
+    return (
+        <Container fluid>
+        <Row>
+        <Col md={1} style={{height: '99vh' }} >
+            <ButtonGroup>
               <PlayPause paused={feedback_state.paused} handle={setFeedbackState}/>
               <RecordControl recording={recording_state.recording} handle={setRecordingState}/>
-          </Box>
-          <Box pad="none" border={{ color: 'border', size: 'xsmall' }} gridArea="graphics" style={{position:"relative"}}>
-              <FPSStats top='0' right='0' bottom='auto' left='auto'/>
+            </ButtonGroup>
+        </Col>
+        <Col md={11} style={{height: '99vh' }} >
+              <FPSStats top='auto' right='0' bottom='0' left='auto'/>
               <RootGraphics object_props={current_state} recording_state={recording_state.recording} />
-          </Box>
-      </Grid>
-    </Grommet> );
+        </Col>
+        </Row>
+      </Container> );
 }

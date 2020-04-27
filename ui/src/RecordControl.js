@@ -1,49 +1,40 @@
 import React from 'react'
-import
-{
-    Grid,
-    Button,
-}
-from 'grommet';
+
+import Button from 'react-bootstrap/Button'
 
 import
 {
     StopFill,
-    Radial,
-    RadialSelected
+    Radial
 }
 from 'grommet-icons';
+
+import Spinner from 'react-bootstrap/Spinner'
 
 export default function RecordControl( props )
 {
     if( props.recording )
     {
         return (
-            <Grid
-                rows={['flex']}
-                columns={['auto', 'auto']}
-                areas={[
-                  { name: 'recording_now', start: [0, 0], end: [0, 0] },
-                  { name: 'stop_recording', start: [1, 0], end: [1, 0] },
-                ]}
-              >
-              <Button gridArea="recording_now" width="large" fill={false} plain={false} icon={<RadialSelected color={"#ff0000"}/>} color={"#ff0000"} label={""} disabled/> 
-              <Button gridArea="stop_recording" width="large" fill={false} plain={false} icon={<StopFill/>} label={""} onClick={() => {props.handle({recording: false})}}/>
-            </Grid> )
+            <React.Fragment>
+              <Button color={"#ff0000"} disabled>
+              <Spinner as="span" size="sm" animation="grow" />
+              </Button> 
+              <Button onClick={() => {props.handle({recording: false})}}>
+              <StopFill/>
+              </Button>
+            </React.Fragment> )
     }
     else
     {
         return (
-            <Grid
-                rows={['flex']}
-                columns={['auto', 'auto']}
-                areas={[
-                  { name: 'recording_now', start: [0, 0], end: [0, 0] },
-                  { name: 'stop_recording', start: [1, 0], end: [1, 0] },
-                ]}
-              >
-              <Button gridArea="recording_now" width="large" fill={false} plain={false} icon={<Radial color={"#ff0000"}/>} label={""} onClick={() => {props.handle({recording: true})}}/>
-              <Button gridArea="stop_recording" width="large" fill={false} plain={false} icon={<StopFill/>} label={""} onClick={() => {}} disabled/>
-            </Grid> )
+            <React.Fragment>
+              <Button onClick={() => {props.handle({recording: true})}}>
+              <Radial/>
+              </Button>
+              <Button onClick={() => {}} disabled>
+              <StopFill/>
+              </Button>
+            </React.Fragment> )
     }
 }

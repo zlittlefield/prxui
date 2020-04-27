@@ -40,7 +40,7 @@ export default function RootGraphics( props )
     } );
 
     return ( <div style={{ width: '100%', height: '100%' }} >
-      <Canvas
+        <Canvas
         gl={{ alpha: true, antialias: true, logarithmicDepthBuffer: true }}
         camera={{ fov: 45, position: [0, -5, 20], up: [0, 0, 1], near: 0.1, far: 1000 }}
         shadowMap={true}
@@ -56,5 +56,5 @@ export default function RootGraphics( props )
         <PrxGroundPlane />
         <PrxGeoms geoms={current_geoms} />
       </Canvas>
-    </div> )
+      </div> )
 }

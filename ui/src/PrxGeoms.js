@@ -24,7 +24,7 @@ function PrxBox( props )
 
     return ( <mesh ref={mesh} castShadow receiveShadow>
         <boxBufferGeometry attach="geometry" args={props.dims} />
-        <meshStandardMaterial attach="material" color={props.color} />
+        <meshPhongMaterial attach="material" color={props.color} />
         </mesh> )
 }
 
@@ -40,7 +40,7 @@ function PrxSphere( props )
 
     return ( <mesh ref={mesh} castShadow receiveShadow>
         <sphereBufferGeometry attach="geometry" args={[props.radius,16,16]} />
-        <meshStandardMaterial attach="material" color={props.color} />
+        <meshPhongMaterial attach="material" color={props.color} />
         </mesh> )
 }
 

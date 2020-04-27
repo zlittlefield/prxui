@@ -1,9 +1,6 @@
 import React from 'react'
-import
-{
-    Button
-}
-from 'grommet';
+
+import Button from 'react-bootstrap/Button'
 
 import
 {
@@ -16,10 +13,10 @@ export default function PlayPause( props )
 {
     if( props.paused )
     {
-        return ( <Button fill={false} plain={false} icon={<Play/>} label={""} onClick={() => {props.handle({paused: false})}}/> )
+        return ( <Button onClick={() => {props.handle({paused: false})}}><Play/></Button> )
     }
     else
     {
-        return ( <Button  fill={false} plain={false} icon={<Pause/>} label={""} onClick={() => {props.handle({paused: true})}}/> )
+        return ( <Button onClick={() => {props.handle({paused: true})}}><Pause/></Button> )
     }
 }
