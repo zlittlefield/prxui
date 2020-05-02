@@ -36,10 +36,10 @@ export default function RootGraphics( props )
     const [ current_geoms, setGeoms ] = useState( [] );
     useEffect( () =>
     {
-        setGeoms( props.object_props.geoms )
+        setGeoms( props.object_props.geometries )
     } );
 
-    return ( <div style={{ width: '100%', height: '100%' }} >
+    return (
         <Canvas
         gl={{ alpha: true, antialias: true, logarithmicDepthBuffer: true }}
         camera={{ fov: 45, position: [0, -5, 20], up: [0, 0, 1], near: 0.1, far: 1000 }}
@@ -55,6 +55,5 @@ export default function RootGraphics( props )
         <pointLight position={[-50, -50, 50]} intensity={2.2}  castShadow/>
         <PrxGroundPlane />
         <PrxGeoms geoms={current_geoms} />
-      </Canvas>
-      </div> )
+      </Canvas> )
 }

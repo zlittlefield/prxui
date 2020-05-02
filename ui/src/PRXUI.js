@@ -28,7 +28,7 @@ export default function PRXUI()
 {
     const [ current_state, setState ] = useState(
     {
-        geoms: []
+        geometries: []
     } );
 
     const [ feedback_state, setFeedbackState ] = useState(
@@ -70,28 +70,33 @@ export default function PRXUI()
             var cloned_state = Object.assign(
             {}, current_state )
 
-            if( current_message.new_geoms )
+            if( current_message.geometries )
             {
-                for( var index = 0; index < current_message.new_geoms.length; index++ )
+                for( var index = 0; index < current_message.geometries.length; index++ )
                 {
-                    var geom_message = current_message.new_geoms[ index ]
-                    var result = cloned_state.geoms.find( geom => geom.name == geom_message.name );
+                    var geom_message = current_message.geometries[ index ]
+                    var result = cloned_state.geometries.find( geom => geom.name == geom_message.name );
                     if( result )
                     {
-                        result = geom_message
+                        result.color = geom_message.color
+
+                        if( result.type == "line" )
+                        {
+                            result.points = geom_message.points
+                        }
                     }
                     else
                     {
-                        cloned_state.geoms.push( geom_message )
+                        cloned_state.geometries.push( geom_message )
                     }
                 }
             }
-            if( current_message.geom_poses )
+            if( current_message.poses )
             {
-                for( var index = 0; index < current_message.geom_poses.length; index++ )
+                for( var index = 0; index < current_message.poses.length; index++ )
                 {
-                    var pose_message = current_message.geom_poses[ index ]
-                    const result = cloned_state.geoms.find( geom => geom.name == pose_message.name );
+                    var pose_message = current_message.poses[ index ]
+                    const result = cloned_state.geometries.find( geom => geom.name == pose_message.name );
                     if( result )
                     {
                         result.position = pose_message.position
@@ -106,13 +111,13 @@ export default function PRXUI()
     return (
         <Container fluid>
         <Row>
-        <Col md={1} style={{height: '99vh' }} >
+        <Col md={1} style={{height: '100vh' }} >
             <ButtonGroup>
               <PlayPause paused={feedback_state.paused} handle={setFeedbackState}/>
               <RecordControl recording={recording_state.recording} handle={setRecordingState}/>
             </ButtonGroup>
         </Col>
-        <Col md={11} style={{height: '99vh' }} >
+        <Col md={11} style={{height: '100vh' }} >
               <FPSStats top='auto' right='0' bottom='0' left='auto'/>
               <RootGraphics object_props={current_state} recording_state={recording_state.recording} />
         </Col>
