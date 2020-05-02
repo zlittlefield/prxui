@@ -92,3 +92,13 @@ Currently, two high level objects can be sent to the UI. First, is `geometries`.
 The second attribute is `poses`. This is a list consisting of the name of the object, and the position and orientation of that object. The orientation is a quaternion representation (x,y,z,w ordering). 
 
 A message containing these attributes is then serialized into a bson object and sent to the UI, which then deserializes the message and creates all the necessary components. 
+
+## Running the example client
+
+This project is configured to use the Bazel build system. If you have bazel installed on your machine, you can run 
+
+```
+bazel run //prx/helpers:ws_client_test
+```
+to run this code. Otherwise, the headers that are needed are provided in the repo, so you can move them into another build environment and compile the executable separately (updating the include paths at the top of `ws_client_test.cc`).
+
